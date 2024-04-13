@@ -9,8 +9,13 @@ public class Sistema {
     public static void main(String[] args) throws Exception {
         teclado = new Scanner(System.in);
         menuIniciar();
-        cachorrosGrandes();
-        cachorrosGrandes();
+        int banhoEmFimDeSemana = ehFimDeSemana();
+        int qtdCachorrosGrandes = cachorrosGrandes();
+        int qtdCachorrosPequenos = cachorrosPequenos();
+        double orcamento1 = orcamentoPetshop1(qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
+        double orcamento2 = orcamentoPetshop2(qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
+        double orcamento3 = orcamentoPetshop3(qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
+        System.out.println("O preço total dos banhos no Petshop Meu Canino Feliz é R$"+orcamento1+", no Petshop Vai Rex é R$"+orcamento2+", e no Petshop Chow Chawgas é R$"+orcamento3+".");
         teclado.close();
     }
 
@@ -27,21 +32,20 @@ public class Sistema {
     /**
      * Introdução do sistema no console.
      */
-    static void textoIntrodutorio() {
+    static void menuIniciar() {
         limparTela();
         System.out.println("Sistema de ranking para petshops");
-        System.out.println("========================================");
+        System.out.println("=================================================================\n");
         System.out.println("Olá! Bem vindo(a)! Vamos realizar a precificação de cada petshop.");
+        System.out.println("Vamos precisar de alguns dados a seguir, tudo bem?\n");
     }
 
     /**
-    * Método para introduzir o sistema e descobrir se o banho está previsto para o fim de semana ou dia útil.
+    * Método para descobrir se o banho está previsto para o fim de semana ou dia útil.
     * @return Se o banho será realizado no fim de semana (1) ou em dia útil (0).
     */
-    static int menuIniciar() {
+    static int ehFimDeSemana() {
         int banhoEmFimDeSemana;
-        textoIntrodutorio();
-        System.out.println("Vamos precisar de alguns dados a seguir, tudo bem?");
         System.out.println("Seu banho será realizado no fim de semana ou em dia útil? Se for no fim de semana, digite 1. Se não, digite 0.");
         banhoEmFimDeSemana = Integer.parseInt(teclado.nextLine());
         return banhoEmFimDeSemana;
@@ -68,6 +72,46 @@ public class Sistema {
         System.out.println("Quantos cachorros de PEQUENO porte vão tomar banho?");
         cachorrosPequenos = Integer.parseInt(teclado.nextLine());
         return cachorrosPequenos;
+    }
+
+    static double orcamentoPetshop1(int qtdCachorrosGrandes, int qtdCachorrosPequenos, int ehFimDeSemana){
+        MeuCaninoFeliz banho = new MeuCaninoFeliz("Meu Canino Feliz", qtdCachorrosGrandes, qtdCachorrosPequenos, ehFimDeSemana);
+        double preco = banho.preco();
+        return preco;
+    }
+
+    static double orcamentoPetshop2(int qtdCachorrosGrandes, int qtdCachorrosPequenos, int ehFimDeSemana){
+        VaiRex banho = new VaiRex("Vai Rex", qtdCachorrosGrandes, qtdCachorrosPequenos, ehFimDeSemana);
+        double preco = banho.preco();
+        return preco;
+    }
+
+    static double orcamentoPetshop3(int qtdCachorrosGrandes, int qtdCachorrosPequenos, int ehFimDeSemana){
+        ChowChawgas banho = new ChowChawgas("Chow Chawgas", qtdCachorrosGrandes, qtdCachorrosPequenos, ehFimDeSemana);
+        double preco = banho.preco();
+        return preco;
+    }
+
+    static double maiorNumero(double numero1, double numero2, double numero3){
+    double maior;
+    if (numero1 > numero2 && numero1 > numero3) {
+        maior = numero1;
+    }
+    else if(numero2 > numero1 && numero2 > numero3) {
+        maior = numero2;
+    }
+    else {
+        maior = numero3;
+    }
+    return maior;
+    }
+
+    static double compararOrcamento(double orcamento1, double orcamento2, double orcamento3){
+        double melhorOrcamento = 0.0;
+        if ((orcamento1 != orcamento2) && (orcamento2 != orcamento3) && (orcamento3 != orcamento1)) {
+            melhorOrcamento = maiorNumero(orcamento1,orcamento2,orcamento3);
+        }
+        return melhorOrcamento;
     }
 
     }
