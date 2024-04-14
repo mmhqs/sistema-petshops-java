@@ -50,6 +50,7 @@ public class Sistema {
         System.out.println("Petshop Chow Chawgas: R$"+orcamento3+".\n");
 
         double melhorOrcamento = compararOrcamento(orcamento1,orcamento2,orcamento3);
+
         System.out.println("Considerando preços e distâncias, o melhor orçamento é: R$"+melhorOrcamento+".\n");
 
         teclado.close();
