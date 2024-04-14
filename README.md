@@ -7,5 +7,5 @@
 
 ### :round_pushpin: Organização de diretórios no repositório
 - Pasta **codigo**: apresenta o código construído no projeto.
-- Pasta **documentacao**: apresenta o guia do projeto em PDF, que contém premissas assumidas.
+- Pasta **documentacao**: apresenta o guia do projeto em PDF, que contém premissas assumidas, decisões de projeto e instruções de utilização.
 - Pasta **validador**: contém a planilha auxiliar em Excel, que contém um jeito prático de avaliar se as do sistema estão sendo realizadas corretamente.
