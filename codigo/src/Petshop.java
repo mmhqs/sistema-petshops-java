@@ -1,7 +1,3 @@
-import java.time.LocalDate;
-import java.time.Period;
-import java.util.Random;
-
 public class Petshop {
     protected String nome;
     protected int qtdCachorrosGrandes;

@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class VaiRex extends Petshop {
     private static final int DISTANCIA_CANIL = 1700;
 
@@ -32,5 +30,9 @@ public class VaiRex extends Petshop {
             preco = precoDiaUtil();
         }
         return preco;
+    }
+
+    public int retornarDistancia(){
+        return DISTANCIA_CANIL;
     }
 }

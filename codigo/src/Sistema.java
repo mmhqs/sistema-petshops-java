@@ -42,13 +42,21 @@ public class Sistema {
         System.out.println("Nº de banhos em cachorros de grande porte: "+qtdCachorrosGrandes+".");
         System.out.println("Nº de banhos em cachorros de pequeno porte: "+qtdCachorrosPequenos+".\n");
 
-        System.out.println("Petshop Meu Canino Feliz: R$"+orcamento1+".\n");
-        System.out.println("Petshop Vai Rex: R$"+orcamento2+".\n");
-        System.out.println("Petshop Chow Chawgas: R$"+orcamento3+".\n");
+        System.out.println("Petshop Meu Canino Feliz: R$ "+orcamento1+".");
+        System.out.println("Petshop Vai Rex: R$ "+orcamento2+".");
+        System.out.println("Petshop Chow Chawgas: R$ "+orcamento3+".\n");
 
         double melhorOrcamento = compararOrcamento(orcamento1,orcamento2,orcamento3);
 
-        System.out.println("Considerando preços e distâncias, o melhor orçamento é: R$"+melhorOrcamento+".\n");
+        if(melhorOrcamento == orcamento1){
+            System.out.println("Considerando preços e distâncias, o melhor petshop é o "+novoBanho1.nome+", com o orçamento de R$ "+melhorOrcamento+" e a distância de "+novoBanho1.retornarDistancia()+" metros até o canil.\n");
+        }
+        if(melhorOrcamento == orcamento2){
+            System.out.println("Considerando preços e distâncias, o melhor petshop é o "+novoBanho2.nome+", com o orçamento de R$ "+melhorOrcamento+" e a distância de "+novoBanho2.retornarDistancia()+" metros até o canil.\n");
+        }
+        if(melhorOrcamento == orcamento2){
+            System.out.println("Considerando preços e distâncias, o melhor petshop é o "+novoBanho2.nome+", com o orçamento de R$ "+melhorOrcamento+" e a distância de "+novoBanho3.retornarDistancia()+" metros até o canil.\n");
+        }
 
         teclado.close();
     }

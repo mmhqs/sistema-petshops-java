@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class MeuCaninoFeliz extends Petshop {
     private static final int DISTANCIA_CANIL = 2000;
     private static final double TAXA_FDS = 0.2;
@@ -33,6 +31,10 @@ public class MeuCaninoFeliz extends Petshop {
             preco = precoDiaUtil();
         }
         return preco;
+    }
+
+    public int retornarDistancia(){
+        return DISTANCIA_CANIL;
     }
 }
 

@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-
 public class ChowChawgas extends Petshop {
     private static final int DISTANCIA_CANIL = 800;
 
@@ -15,5 +13,8 @@ public class ChowChawgas extends Petshop {
         return preco;
     }
 
+    public int retornarDistancia(){
+        return DISTANCIA_CANIL;
+    }
 
 }
