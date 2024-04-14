@@ -1,6 +1,10 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
+import java.util.Calendar;
 
 public class Sistema {
     static Scanner teclado;
@@ -11,10 +15,21 @@ public class Sistema {
 
         menuIniciar();
 
-        int banhoEmFimDeSemana = ehFimDeSemana();
+        // Obtendo do usuário a data prevista para o banho
+        String dataString = obterStringData();
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date data = formato.parse(dataString);
+        // Convertendo para o objeto Calendar pra verificar dias de semana
+        Calendar dataCalendario = Calendar.getInstance(); 
+        dataCalendario.setTime(data);
+        // Verificando se o banho vai ser no fim de semana ou não
+        int banhoEmFimDeSemana = verificarFimDeSemana(dataCalendario);
+
+        // Obtendo do usuário a quantidade de banhos para cada porte de cachorrinho
         int qtdCachorrosGrandes = cachorrosGrandes();
         int qtdCachorrosPequenos = cachorrosPequenos();
 
+        // Criando os objetos em cada petshop
         MeuCaninoFeliz novoBanho1 = new MeuCaninoFeliz("Meu Canino Feliz", qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
         VaiRex novoBanho2 = new VaiRex("Vai Rex", qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
         ChowChawgas novoBanho3 = new ChowChawgas("Chow Chawgas", qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
@@ -23,8 +38,10 @@ public class Sistema {
         double orcamento2 = novoBanho2.preco();
         double orcamento3 = novoBanho3.preco();
 
-        System.out.println("Orçamento dos preço total dos banhos");
-        System.out.println("=================================================================\n");
+        System.out.println("=======================================================================================================");
+        System.out.println("Orçamento do preço total do(s) banho(s)");
+        System.out.println("=======================================================================================================\n");
+        System.out.println("Data do banho: "+formato.format(data)+".");
         System.out.println("Nº de banhos em cachorros de grande porte: "+qtdCachorrosGrandes+".");
         System.out.println("Nº de banhos em cachorros de pequeno porte: "+qtdCachorrosPequenos+".\n");
 
@@ -54,19 +71,40 @@ public class Sistema {
     static void menuIniciar() {
         limparTela();
         System.out.println("Sistema de seleção de petshops");
-        System.out.println("=================================================================\n");
+        System.out.println("=======================================================================================================\n");
         System.out.println("Olá! Bem vindo(a)! Vamos realizar a precificação de cada petshop.");
         System.out.println("Vamos precisar de alguns dados a seguir, tudo bem?\n");
     }
 
     /**
-    * Método para descobrir se o banho está previsto para o fim de semana ou dia útil.
-    * @return Se o banho será realizado no fim de semana (1) ou em dia útil (0).
-    */
-    static int ehFimDeSemana() {
-        int banhoEmFimDeSemana;
-        System.out.println("Seu banho será realizado no fim de semana ou em dia útil? Se for no fim de semana, digite 1. Se não, digite 0.");
-        banhoEmFimDeSemana = Integer.parseInt(teclado.nextLine());
+     * Método para obter uma string de data do banho do usuário.
+     * @return Data do banho em formato String.
+     */
+    static String obterStringData(){
+        String dataBanho;
+        System.out.println("Qual dia você quer dar banho no seu cachorro? Digite a data prevista (DD/MM/AAAA).");
+        dataBanho = teclado.nextLine();
+        return dataBanho;
+    }
+
+    /**
+     * Método para verificar se a data lida é um sábado ou domingo.
+     * @param data
+     * @return Número inteiro igual a 0 caso seja dia útil e igual a 1 caso seja fim de semana (sábado ou domingo).
+     */
+    static int verificarFimDeSemana(Calendar data) {
+        int banhoEmFimDeSemana = 0;
+
+        // Se o dia do banho for sábado
+        if (data.get(Calendar.DAY_OF_WEEK) == Calendar.SATURDAY) {
+            banhoEmFimDeSemana = 1;
+        }
+
+        // Se o dia do banho for domingo
+        if (data.get(Calendar.DAY_OF_WEEK) == Calendar.SUNDAY) {
+            banhoEmFimDeSemana = 1;
+        }
+
         return banhoEmFimDeSemana;
     }
 
