@@ -31,21 +31,23 @@ public class Sistema {
         VaiRex novoBanho2 = new VaiRex("Vai Rex", qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
         ChowChawgas novoBanho3 = new ChowChawgas("Chow Chawgas", qtdCachorrosGrandes, qtdCachorrosPequenos, banhoEmFimDeSemana);
 
+        // Calculando os preços de cada petshop
         double orcamento1 = novoBanho1.preco();
         double orcamento2 = novoBanho2.preco();
         double orcamento3 = novoBanho3.preco();
 
+        // Imprimindo os preços de cada petshop
         System.out.println("=======================================================================================================");
         System.out.println("Orçamento do preço total do(s) banho(s)");
         System.out.println("=======================================================================================================\n");
         System.out.println("Data do banho: "+formato.format(data)+".");
         System.out.println("Nº de banhos em cachorros de grande porte: "+qtdCachorrosGrandes+".");
         System.out.println("Nº de banhos em cachorros de pequeno porte: "+qtdCachorrosPequenos+".\n");
-
         System.out.println("Petshop Meu Canino Feliz: R$ "+orcamento1+".");
         System.out.println("Petshop Vai Rex: R$ "+orcamento2+".");
         System.out.println("Petshop Chow Chawgas: R$ "+orcamento3+".\n");
 
+        // Comparando preços e distâncias para fornecer a melhor opção de orçamento
         double melhorOrcamento = compararOrcamento(orcamento1,orcamento2,orcamento3);
 
         if(melhorOrcamento == orcamento1){
@@ -64,7 +66,7 @@ public class Sistema {
 // Métodos
 
     /**
-    * Artifício para "limpar" a tela com um comandinho popular no Linux que imprime na tela uma sequência longa.
+    * Método que serve como artifício para "limpar" a tela com um comandinho popular no Linux que imprime na tela uma sequência longa.
     */
     public static void limparTela() {
         System.out.print("\033[H\033[2J");
@@ -72,7 +74,7 @@ public class Sistema {
     }
 
     /**
-     * Introdução do sistema no console.
+     * Método para introduzir o sistema no console.
      */
     static void menuIniciar() {
         limparTela();
@@ -137,14 +139,13 @@ public class Sistema {
         return cachorrosPequenos;
     }
 
-/**
- * Método para obter o menor entre três números diferentes entre si.
- * @param numero1 Primeiro número a ser avaliado.
- * @param numero2 Segundo número a ser avaliado.
- * @param numero3 Terceiro número a ser avaliado.
- * @return Menor número entre três números diferentes entre si.
- */
-
+    /**
+    * Método para obter o menor entre três números diferentes entre si.
+    * @param numero1 Primeiro número a ser avaliado.
+    * @param numero2 Segundo número a ser avaliado.
+    * @param numero3 Terceiro número a ser avaliado.
+    * @return Menor número entre três números diferentes entre si.
+    */
     static double menorNumero(double numero1, double numero2, double numero3){
     double menor;
     if (numero1 < numero2 && numero1 < numero3) {
@@ -159,6 +160,13 @@ public class Sistema {
     return menor;
     }
 
+    /**
+     * Método para comparar orçamentos considerando as variáveis preço e distância.
+     * @param orcamento1 Preço dos banhos referente ao petshop Meu Canino Feliz.
+     * @param orcamento2 Preço dos banhos referente ao petshop Vai Rex.
+     * @param orcamento3 Preço dos banhos referente ao petshop Chow Chawgas.
+     * @return Melhor preço considerando a distância e critérios de empate.
+     */
     static double compararOrcamento(double orcamento1, double orcamento2, double orcamento3){
         double melhorOrcamento = 0.0;
 
